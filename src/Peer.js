@@ -16,7 +16,8 @@ const Peer = ({ peer }) => {
 	const amIScreenSharing = useHMSStore(selectIsLocalScreenShared);
 	const screenShareVideoTrack = useHMSStore(selectScreenShareByPeerID(peer.id));
 	const screenShareRef = useRef(null);
-	
+	console.log(videoTrack);
+	console.log(peer);
 	useEffect(() => {
 		if (videoRef.current && videoTrack) {
 			if (videoTrack.enabled) {
@@ -62,7 +63,7 @@ const Peer = ({ peer }) => {
 			</div>
 			{
 				!peer.isLocal && <div>
-					<RangeSlider hmsActions={hmsActions} trackID={videoTrack.id}/>
+					<RangeSlider hmsActions={hmsActions} trackID={peer.audioTrack}/>
 				</div>
 			}
 		</div>
