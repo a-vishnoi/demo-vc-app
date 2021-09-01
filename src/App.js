@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect} from 'react';
+import JoinForm from "./JoinForm";
+import "./styles.css";
+import Conference from "./Conference";
+import Header from "./Header";
+import Footer from "./Footer";
+import {
+	selectIsConnectedToRoom,
+	useHMSActions,
+	useHMSStore
+} from "@100mslive/hms-video-react";
 
-function App() {
+
+const App = () => {
+	
+	const isConnected = useHMSStore(selectIsConnectedToRoom);
+	const hmsActions = useHMSActions();
+	
+	useEffect(() => {
+		window.onunload = () => {
+			if (isConnected) {
+				hmsActions.leave();
+			}
+		};
+	}, [hmsActions, isConnected]);
+	
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+	    <Header />
+	    {isConnected ? (
+		    <>
+		      <Conference />
+		      <Footer />
+		    </>
+	    ) : (
+		    <JoinForm />
+	    )}
     </div>
   );
 }
