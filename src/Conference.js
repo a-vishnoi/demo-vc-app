@@ -4,16 +4,16 @@ import Peer from "./Peer";
 
 const Conference = () => {
 	const peers = useHMSStore(selectPeers);
-	const presenters = useHMSStore(selectPeersScreenSharing);
-	
-	console.log(presenters);
+	// const presenters = useHMSStore(selectPeersScreenSharing);
+	//
+	// console.log(presenters);
 	return (
 		<div className="conference-section">
 			<h2>Conference</h2>
 			
 			<div className="peers-container">
 				{peers.map((peer) => (
-					<Peer key={peer.id} peer={peer} presenters={presenters} />
+					<Peer key={peer.id} peer={peer} />
 				))}
 			</div>
 		</div>

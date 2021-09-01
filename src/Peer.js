@@ -9,13 +9,15 @@ import {
 import { useRef, useEffect } from "react";
 import RangeSlider from "./RangeSlider";
 
-const Peer = ({ peer, presenters }) => {
+const Peer = ({ peer }) => {
 	const videoRef = useRef(null);
 	const hmsActions = useHMSActions();
 	const videoTrack = useHMSStore(selectVideoTrackByPeerID(peer.id));
 	const amIScreenSharing = useHMSStore(selectIsLocalScreenShared);
 	const screenShareVideoTrack = useHMSStore(selectScreenShareByPeerID(peer.id));
 	const screenShareRef = useRef(null);
+	
+	console.log(peer);
 	
 	useEffect(() => {
 		if (videoRef.current && videoTrack) {
@@ -38,7 +40,7 @@ const Peer = ({ peer, presenters }) => {
 	return (
 		<div className="peer-container">
 			{
-				presenters.length > 0 && presenters.filter(presenter => presenter.id === peer.id).length > 0 && <video
+				 screenShareVideoTrack && <video
 					width="1173"
 					height="660"
 					ref={screenShareRef}
