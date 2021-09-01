@@ -39,7 +39,7 @@ const Peer = ({ peer }) => {
 	return (
 		<div className="peer-container">
 			{
-				amIScreenSharing && <video
+				<video
 					width="1173"
 					height="660"
 					ref={screenShareRef}
@@ -48,7 +48,7 @@ const Peer = ({ peer }) => {
 					playsInline
 				/>
 			}
-			{amIScreenSharing && <br />}
+			{<br />}
 			<video
 				ref={videoRef}
 				width={amIScreenSharing ? "200" : ""}

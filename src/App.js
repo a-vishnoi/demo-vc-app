@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import JoinForm from "./JoinForm";
 import "./styles.css";
 import Conference from "./Conference";
